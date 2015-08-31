@@ -1,0 +1,2 @@
+# Emptiness
+Empty project templates
