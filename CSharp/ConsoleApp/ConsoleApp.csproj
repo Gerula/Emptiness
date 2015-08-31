@@ -1,0 +1,19 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!-- https://msdn.microsoft.com/en-us/library/dd576348.aspx -->
+    <PropertyGroup>
+        <AssemblyName>ConsoleApp</AssemblyName>
+        <OutputType>Library<!--Exe--></OutputType>
+        <OutputPath>Bin\</OutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="ConsoleApp.cs" />
+    </ItemGroup>
+    <Target Name="Build">
+        <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+        <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />
+    </Target>
+    <Target Name="Clean" >
+        <Delete Files="$(OutputPath)$(AssemblyName).exe" />
+    </Target>
+    <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+</Project>
